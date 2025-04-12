@@ -4,12 +4,14 @@ import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [notes, setNotes] = useState([]);
 
   // Fetch notes from PostgreSQL when the app loads
   useEffect(() => {
-    fetch("http://localhost:5000/api/notes")
+    fetch(`${API_URL}/notes`)
       .then((res) => res.json())
       .then((data) => setNotes(data))
       .catch((err) => console.error("Error fetching notes:", err));
@@ -18,7 +20,7 @@ function App() {
   // Add a new note to PostgreSQL
   async function addNote(newNote) {
     try {
-      const res = await fetch("http://localhost:5000/api/notes", {
+      const res = await fetch(`${API_URL}/notes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
@@ -33,7 +35,7 @@ function App() {
   // Delete a note from PostgreSQL
   async function deleteNote(id) {
     try {
-      await fetch(`http://localhost:5000/api/notes/${id}`, { method: "DELETE" });
+      await fetch(`${API_URL}/notes/${id}`, { method: "DELETE" });
       setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id)); // Remove from UI
     } catch (error) {
       console.error("Error deleting note:", error);
