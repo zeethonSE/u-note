@@ -1,2 +1,4 @@
 # .gitignore
 dist/
+.env
+.DS_Store
