@@ -8,12 +8,12 @@ const PORT = 5000;
 
 app.use(cors({
   origin: 'https://u-note-umber.vercel.app', // allow your Vercel frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
+app.options('*', cors());
 
 // Middleware
-// app.use(cors());
+app.use(cors());
 app.use(bodyParser.json());
 
 // Get all notes
