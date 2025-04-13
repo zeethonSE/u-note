@@ -9,8 +9,7 @@ const PORT = process.env.PORT || 5000;
 // ✅ CORRECT CORS setup: only use once and configure properly
 app.use(cors({
   origin: "https://u-note-umber.vercel.app", // Vercel frontend domain
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
 // ✅ Middleware
@@ -19,7 +18,7 @@ app.use(bodyParser.json());
 // ✅ Routes
 
 // Get all notes
-app.get("/notes", async (req, res) => {
+app.get("/api/notes", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM notes ORDER BY created_at DESC");
     res.json(result.rows);
@@ -30,7 +29,7 @@ app.get("/notes", async (req, res) => {
 });
 
 // Add a new note
-app.post("/notes", async (req, res) => {
+app.post("/api/notes", async (req, res) => {
   const { title, content } = req.body;
 
   if (!title || !content) {

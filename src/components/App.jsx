@@ -5,6 +5,8 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
+console.log("Backend URL:", process.env.VITE_BACKEND_URL);
+console.log("API URL:", API_URL);
 
 function App() {
   const [notes, setNotes] = useState([]);
