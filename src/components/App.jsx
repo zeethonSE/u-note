@@ -12,7 +12,7 @@ function App() {
 
   // Fetch notes from PostgreSQL when the app loads
   useEffect(() => {
-    fetch(`${API_URL}/api/notes`)
+    fetch(`${API_URL}/notes`)
       .then((res) => res.json())
       .then((data) => setNotes(data))
       .catch((err) => console.error("Error fetching notes:", err));
@@ -21,7 +21,7 @@ function App() {
   // Add a new note to PostgreSQL
   async function addNote(newNote) {
     try {
-      const res = await fetch(`${API_URL}/api/notes`, {
+      const res = await fetch(`${API_URL}/notes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
@@ -36,7 +36,7 @@ function App() {
   // Delete a note from PostgreSQL
   async function deleteNote(id) {
     try {
-      await fetch(`${API_URL}/api/notes/${id}`, { method: "DELETE" });
+      await fetch(`${API_URL}/notes/${id}`, { method: "DELETE" });
       setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id)); // Remove from UI
     } catch (error) {
       console.error("Error deleting note:", error);
