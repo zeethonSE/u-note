@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import pool from "./db.js"; // PostgreSQL connection
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 // ✅ CORRECT CORS setup: only use once and configure properly
 app.use(cors({
