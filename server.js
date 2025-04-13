@@ -9,11 +9,17 @@ const PORT = process.env.PORT || 5000;
 // ✅ CORRECT CORS setup: only use once and configure properly
 app.use(cors({
   origin: "https://u-note-umber.vercel.app", // Vercel frontend domain
-  methods: ["GET", "POST", "PUT", "DELETE"]
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 
 // ✅ Middleware
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  console.log("Incoming request from origin:", req.headers.origin);
+  next();
+});
+
 
 // ✅ Routes
 app.get("/", (req, res) => {
