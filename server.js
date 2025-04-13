@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import pool from "./db.js"; // PostgreSQL connection
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // ✅ CORRECT CORS setup: only use once and configure properly
 app.use(cors({
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 // ✅ Routes
 
 // Get all notes
-app.get("/api/notes", async (req, res) => {
+app.get("/notes", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM notes ORDER BY created_at DESC");
     res.json(result.rows);
@@ -30,7 +30,7 @@ app.get("/api/notes", async (req, res) => {
 });
 
 // Add a new note
-app.post("/api/notes", async (req, res) => {
+app.post("/notes", async (req, res) => {
   const { title, content } = req.body;
 
   if (!title || !content) {
@@ -50,7 +50,7 @@ app.post("/api/notes", async (req, res) => {
 });
 
 // Delete a note
-app.delete("/api/notes/:id", async (req, res) => {
+app.delete("/notes/:id", async (req, res) => {
   try {
     const { id } = req.params;
     await pool.query("DELETE FROM notes WHERE id = $1", [id]);
