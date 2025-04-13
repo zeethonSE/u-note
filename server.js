@@ -21,18 +21,34 @@ app.use((req, res, next) => {
 });
 
 
-// ✅ Routes
-app.get("/", (req, res) => {
-  res.send("U-Note API is running...");
+// ✅ Add one-time SQL
+app.get("/init-db", async (req, res) => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS notes (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        content TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    res.send("✅ Notes table created!");
+  } catch (err) {
+    console.error("❌ Error creating table:", err);
+    res.status(500).send("Failed to create table.");
+  }
 });
+
 
 // Get all notes
 app.get("/api/notes", async (req, res) => {
+  console.log("🔍 GET /api/notes hit"); // Add this
+
   try {
     const result = await pool.query("SELECT * FROM notes ORDER BY created_at DESC");
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
+    console.error("❌ Error fetching notes:", err);
     res.status(500).json({ error: "Database error" });
   }
 });
