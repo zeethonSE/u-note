@@ -16,6 +16,9 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // ✅ Routes
+app.get("/", (req, res) => {
+  res.send("U-Note API is running...");
+});
 
 // Get all notes
 app.get("/api/notes", async (req, res) => {
@@ -49,7 +52,7 @@ app.post("/api/notes", async (req, res) => {
 });
 
 // Delete a note
-app.delete("/notes/:id", async (req, res) => {
+app.delete("/api/notes/:id", async (req, res) => {
   try {
     const { id } = req.params;
     await pool.query("DELETE FROM notes WHERE id = $1", [id]);
