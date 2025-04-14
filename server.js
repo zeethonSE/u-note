@@ -6,11 +6,22 @@ import pool from "./db.js"; // PostgreSQL connection
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// ✅ CORRECT CORS setup: only use once and configure properly
+const allowedOrigins = [
+  "https://u-note-umber.vercel.app",
+];
+
 app.use(cors({
-  origin: "https://u-note-umber.vercel.app", // Vercel frontend domain
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like curl or Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  credentials: true,
 }));
 
 // ✅ Middleware
