@@ -11,13 +11,22 @@ function App() {
   const [notes, setNotes] = useState([]);
 
   // Fetch notes from PostgreSQL when the app loads
+  // useEffect(() => {
+  //   fetch(`${API_URL}/notes`)
+  //     .then((res) => res.json())
+  //     .then((data) => setNotes(data))
+  //     .catch((err) => console.error("Error fetching notes:", err));
+  // }, []);
   useEffect(() => {
-    fetch(`${API_URL}/notes`)
-      .then((res) => res.json())
-      .then((data) => setNotes(data))
-      .catch((err) => console.error("Error fetching notes:", err));
+    fetch("https://u-note-db.onrender.com/api/notes")
+      .then((res) => {
+        if (!res.ok) throw new Error("Response not ok");
+        return res.json();
+      })
+      .then((data) => console.log("Notes:", data))
+      .catch((err) => console.error("Fetch error:", err));
   }, []);
-
+  
   // Add a new note to PostgreSQL
   async function addNote(newNote) {
     try {

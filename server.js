@@ -7,29 +7,22 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 // app.use(cors({ origin: true, credentials: true }));
 
+// Add this before your routes
 const allowedOrigins = [
-  'https://u-note-umber.vercel.app', // Your production frontend
-  /^https:\/\/u-note-.*\.vercel\.app$/ // All Vercel preview deploys
+  "https://u-note-umber.vercel.app",
+  "https://u-note-305eoe3pt-zeethons-projects.vercel.app"
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow server-to-server / Postman
-
-      const isAllowed = allowedOrigins.some((allowed) =>
-        typeof allowed === 'string' ? allowed === origin : allowed.test(origin)
-      );
-
-      if (isAllowed) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 
 // const allowedOrigins = [
 //   "https://u-note-umber.vercel.app",
@@ -55,6 +48,11 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   console.log("Incoming request from origin:", req.headers.origin);
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} from ${req.headers.origin}`);
   next();
 });
 
