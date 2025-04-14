@@ -8,40 +8,40 @@ const PORT = process.env.PORT || 10000;
 // app.use(cors({ origin: true, credentials: true }));
 
 // Add this before your routes
-const allowedOrigins = [
-  "https://u-note-umber.vercel.app",
-  "https://u-note-v-zeethons-projects.vercel.app",
-  "https://u-note-zeethonse-zeethons-projects.vercel.app"
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
-
 // const allowedOrigins = [
 //   "https://u-note-umber.vercel.app",
+//   "https://u-note-v-zeethons-projects.vercel.app",
+//   "https://u-note-zeethonse-zeethons-projects.vercel.app"
 // ];
 
 // app.use(cors({
 //   origin: function (origin, callback) {
-//     // Allow requests with no origin (like curl or Postman)
-//     if (!origin) return callback(null, true);
-//     if (allowedOrigins.includes(origin)) {
-//       return callback(null, true);
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
 //     } else {
-//       return callback(new Error("Not allowed by CORS"));
+//       callback(new Error("Not allowed by CORS"));
 //     }
 //   },
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   credentials: true,
+//   credentials: true
 // }));
+
+const allowedOrigins = [
+  "https://u-note-umber.vercel.app",
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like curl or Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 
 // ✅ Middleware
 app.use(bodyParser.json());

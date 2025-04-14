@@ -17,7 +17,7 @@ export default defineConfig({
         name: 'uNote',
         short_name: 'uNote',
         description: 'Your personal to-do notes app',
-        theme_color: '#ffffff',
+        theme_color: '#fbc02d',
         background_color: '#ffffff',
         display: 'standalone',
         start_url: '/',
