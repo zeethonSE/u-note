@@ -5,7 +5,31 @@ import pool from "./db.js"; // PostgreSQL connection
 
 const app = express();
 const PORT = process.env.PORT || 10000;
-app.use(cors({ origin: true, credentials: true }));
+// app.use(cors({ origin: true, credentials: true }));
+
+const allowedOrigins = [
+  'https://u-note-umber.vercel.app', // Your production frontend
+  /^https:\/\/u-note-.*\.vercel\.app$/ // All Vercel preview deploys
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow server-to-server / Postman
+
+      const isAllowed = allowedOrigins.some((allowed) =>
+        typeof allowed === 'string' ? allowed === origin : allowed.test(origin)
+      );
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
 // const allowedOrigins = [
 //   "https://u-note-umber.vercel.app",
