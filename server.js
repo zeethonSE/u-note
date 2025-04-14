@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 10000;
 // Add this before your routes
 const allowedOrigins = [
   "https://u-note-umber.vercel.app",
-  "https://u-note-305eoe3pt-zeethons-projects.vercel.app"
+  "https://u-note-v-zeethons-projects.vercel.app",
+  "https://u-note-zeethonse-zeethons-projects.vercel.app"
 ];
 
 app.use(cors({
