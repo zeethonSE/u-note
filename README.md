@@ -88,8 +88,14 @@ Add tags or categories
 
 Dark mode
 
+🙋‍♂️ Author
+Sai Sai
+💼 Web Developer
+📧 zeethon0@gmail.com
+🔗 [LinkedIn](https://linkedin.com/in/ssaiwd25)
+
 📄 License
-Licensed under the zeethonSE License
+This project is open source and available under the [MIT License.](MIT-LICENSE)
 
 🔗 GitHub
 👉 [View the source code on GitHub](https://github.com/zeethonSE/u-note)
