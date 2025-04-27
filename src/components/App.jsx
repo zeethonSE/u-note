@@ -17,17 +17,7 @@ function App() {
       .then((data) => setNotes(data))
       .catch((err) => console.error("Error fetching notes:", err));
   }, []);
-  // useEffect(() => {
-  //   fetch("https://u-note.onrender.com/api/notes")
-  //     .then((res) => {
-  //       if (!res.ok) throw new Error("Response not ok");
-  //       return res.json();
-  //     })
-  //     .then((data) => console.log("Notes:", data))
-  //     .catch((err) => console.error("Fetch error:", err));
-  // }, []);
   
-  // Add a new note to PostgreSQL
   async function addNote(newNote) {
     try {
       const res = await fetch(`${API_URL}/notes`, {
@@ -46,7 +36,7 @@ function App() {
   async function deleteNote(id) {
     try {
       await fetch(`${API_URL}/notes/${id}`, { method: "DELETE" });
-      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id)); // Remove from UI
+      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
     } catch (error) {
       console.error("Error deleting note:", error);
     }
