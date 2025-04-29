@@ -1,102 +1,113 @@
-# u-note
+![U-Note-banner](./assets/uNote-banner.png)
 
-uNote is a full-stack web application where users can create, store, and manage personal notes. Built with React, Express, and PostgreSQL, it's deployed on Vercel (frontend) and Render (backend + database).
+# U-Note 📝 – Fullstack Notes App
 
-🚀 Live Demo
-Frontend: https://u-note-umber.vercel.app
+U-Note is a fullstack note-taking app built with React (Vite) and Node.js (Express), connected to a PostgreSQL database hosted on Render. It supports creating, viewing, and deleting notes. All features are managed within a unified project structure.
 
-Backend API: https://u-note.onrender.com/api
+🔗 Live: u-note-umber.vercel.app
+🔗 API: https://u-note.onrender.com
 
-📌 Features
-Add, view, and delete notes
+# 📸 Screenshots
 
-Auto-expanding textarea for writing
+![U-Note-Screenshot](./assets/unote-1.png)
 
-Material UI for styling and icons
+![U-Note-Screenshot](./assets/unote-2.png)
 
-Progressive Web App (PWA) support
 
-Hosted on cloud platforms for full-stack deployment
+# ✨ Features
 
-🛠️ Technologies Used
-Frontend
-React
+📝 Create and view notes
 
-Vite
+🗑️ Delete notes
 
-Material UI
+🌐 PostgreSQL-based persistent storage
 
-Vite PWA Plugin
+⚛️ Built using React + Express in a monolithic setup
 
-Vercel (hosting)
+🌍 Fully deployed on Vercel (frontend) and Render (backend + DB)
 
-Backend
-Node.js + Express
 
-CORS and Body-Parser middleware
+# 🛠 Tech Stack
 
-PostgreSQL via pg
+Frontend: React (Vite), Tailwind CSS
 
-Render (server + database)
+Backend: Node.js, Express
 
-🧩 Environment Variables
-Create a .env file in your root directories:
+Database: PostgreSQL (Render)
 
-Frontend (.env)
-VITE_BACKEND_URL=https://u-note.onrender.com/api
+Hosting: Vercel (UI) & Render (API & DB)
 
-Backend (.env)
-DATABASE_URL=postgresql://<username>:<password>@<host>/<db-name>
 
-🧪 Running Locally
+# 📁 Project Structure
 
-1. Clone the repository
-   git clone https://github.com/your-username/u-note.git
-   cd u-note
+u-note/
+├── src/         # React components
+├── db.js             # PostgreSQL connection setup
+├── .env            # Environment variables (API keys, DB credentials)
+├── server.js        # Main server entry
+├── vite.config.js  # Vite config for frontend
+└── README.md
 
-2. Setup Backend
-   cd server
-   npm install
-   npm run dev
 
-\*\*\* Ensure you have PostgreSQL running and .env set up with your DATABASE_URL.
+# 🚀 Getting Started (Development)
 
-3. Setup Frontend
-   cd client
-   npm install
-   npm run dev
+Clone the repository
+```bash
+git clone https://github.com/zeethonSE/u-note.git
+cd u-note
+```
 
-🌐 Deployment
-Frontend deployed on Vercel
+Install dependencies
+```bash
+npm install
+```
 
-Backend and PostgreSQL hosted on Render
+Create a .env file
+```bash
+PORT=5000
+DATABASE_URL=your_postgresql_connection_string
+```
 
-Make sure to:
+Start the app
+```bash
+npm run dev
+```
 
-Add CORS support in the backend for Vercel URLs.
+Frontend will run at http://localhost:5173
+Backend will run at http://localhost:5000/api/notes
 
-Use Render’s external database URL in your .env.
 
-💡 Future Improvements
-Add authentication for user-based notes
+# 📦 Deployment
 
-Edit existing notes
+Frontend is deployed on Vercel
 
-Search/filter notes
+Backend and PostgreSQL DB are hosted on Render
 
-Add tags or categories
+Ensure CORS settings in the backend allow access from your frontend domain.
 
-Dark mode
 
-🙋‍♂️ Author
+# 🧠 Future Improvements
+
+✏️ Add support for editing notes
+
+🔐 Implement authentication (JWT or session)
+
+🗂 Organize notes with categories or tags
+
+☁️ Add cloud sync or backups
+
+
+# 🙋‍♂️ Author
+
 Sai Sai
+
 💼 Web Developer
+
 📧 zeethon0@gmail.com
+
 🔗 [LinkedIn](https://linkedin.com/in/ssaiwd25)
 
-📄 License
-This project is open source and available under the [MIT License.](MIT-LICENSE)
+# 📄 License
 
-🔗 GitHub
-👉 [View the source code on GitHub](https://github.com/zeethonSE/u-note)
+This project is open source and available under the [MIT License.](MIT-LICENSE)
 

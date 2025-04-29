@@ -5,25 +5,6 @@ import pool from "./db.js"; // PostgreSQL connection
 
 const app = express();
 const PORT = process.env.PORT || 10000;
-// app.use(cors({ origin: true, credentials: true }));
-
-// Add this before your routes
-// const allowedOrigins = [
-//   "https://u-note-umber.vercel.app",
-//   "https://u-note-v-zeethons-projects.vercel.app",
-//   "https://u-note-zeethonse-zeethons-projects.vercel.app"
-// ];
-
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true
-// }));
 
 const allowedOrigins = [
   "https://u-note-umber.vercel.app",
@@ -31,7 +12,7 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like curl or Postman)
+
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
@@ -43,7 +24,6 @@ app.use(cors({
   credentials: true,
 }));
 
-// ✅ Middleware
 app.use(bodyParser.json());
 app.use(express.json());
 
